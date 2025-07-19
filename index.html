@@ -14,15 +14,17 @@
             align-items: center;
         }
 
-        /* Contenitore del titolo con margine orizzontale */
-		.title-container {
-			background-color: rgba(255, 255, 255, 0.6);
-			padding: 10px 20px;
-			margin: 20px auto; /* centra e lascia spazio ai lati */
-			max-width: 90%; /* si adatta allo schermo */
-			border-radius: 8px;
+        /* Contenitore del titolo */
+        .title-container {
+            background-color: rgba(255, 255, 255, 0.6); /* leggero sfondo per leggibilità */
+            padding: 20px;
+            margin-top: 20px;
+			margin-left: 20px;
+			margin-right: 20px;
+            border-radius: 8px;
 			border: 2px solid #5c3a2e;
-		}
+            width: fit-content;
+        }
 
         /* Titolo */
         h1 {
@@ -40,6 +42,13 @@
             height: auto;
             border: 2px solid black;
             border-radius: 4px;
+        }
+
+        /* Per dispositivi mobili, assicurarsi che la foto sia proporzionata */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.4em;
+            }
         }
     </style>
 </head>
