@@ -49,19 +49,23 @@
         .baptism-photo {
             display: block;
             margin: 30px auto;
-            max-width: 90%;
+            max-width: 80%; /* Ridotta al 80% dello schermo */
+            max-height: 70vh; /* Limita l'altezza a 70% dell'altezza viewport */
             height: auto;
             border: 2px solid #5c3a2e;
             border-radius: 4px;
-            /* Aggiunto per evitare overflow e scrolling */
-            max-height: 80vh; /* Limita l'altezza dell'immagine alla altezza viewport */
-            object-fit: contain; /* Assicura che l'immagine mantenga le proporzioni */
+            object-fit: contain; /* Mantieni proporzioni */
         }
 
         /* Per dispositivi mobili, assicurarsi che la foto sia proporzionata */
         @media (max-width: 600px) {
             h1 {
                 font-size: 1.4em;
+            }
+            /* Puoi anche ridurre ulteriormente la dimensione dell'immagine se necessario */
+            .baptism-photo {
+                max-width: 90%;
+                max-height: 60vh;
             }
         }
     </style>
