@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contattaci</title>
+  <title>Dedica per Ilenia</title>
   <style>
     /* Reset di base */
     * {
@@ -36,6 +36,18 @@
       width: 100%;
       max-width: 600px;
     }
+
+	.sezione {
+	display: flex;
+		justify-content: center; /* Centrare orizzontalmente */
+		margin-top: 5px;
+		margin-bottom: 35px;
+	}
+
+	.frase {
+		text-decoration: underline; /* Sottolineatura */
+		font-size: 1.5em; /* Opzionale, per ingrandire il testo */
+	}
 
     /* Sezione di inserimento */
     .contact-section {
@@ -116,16 +128,19 @@
 </head>
 <body>
   <!-- Titolo sopra la sezione -->
-  <h1>Contattaci e condividi il tuo messaggio</h1>
+  <h1>IL BATTESIMO DI ILENIA<br>27 Settembre 2025</h1>
 
   <!-- Sezione di inserimento -->
   <div class="contact-section">
+	<div class="sezione">
+  <p class="frase">Inserisci una dedica</p>
+</div>
     <form id="messageForm">
       <label for="nome">Nome:</label>
       <input type="text" id="nome" name="nome" placeholder="Inserisci il tuo nome" required />
 
       <label for="messaggio">Messaggio:</label>
-      <textarea id="messaggio" name="messaggio" rows="4" placeholder="Scrivi il tuo messaggio" required></textarea>
+      <textarea id="messaggio" name="messaggio" rows="4" placeholder="Scrivi il messaggio" required></textarea>
 
       <button type="submit">Invia</button>
     </form>
