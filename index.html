@@ -1,82 +1,111 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Battesimo di Ilenia</title>
-	<script>
-	  // Funzione per cambiare l'immagine e il titolo
-	  function cambiaImmagine() {
-		const img = document.getElementById('immagine');
-		const titolo = document.getElementById('titolo');
-		// Sostituisci il src con il percorso della nuova immagine
-		img.src = 'foto_battesimo1.jpg';
-		// Cambia il testo del titolo
-		titolo.textContent = 'BUON PRANZO!';
-	  }
-	</script>
-    <style>
-        body {
-            margin: 0;
-            background-color: #ffe6f0; /* rosa chiaro */
-            font-family: 'Georgia', serif; /* font elegante ma leggibile */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Messaggio Utente</title>
+  <style>
+    /* Reset di base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        /* Contenitore del titolo */
-        .title-container {
-            background-color: rgba(255, 255, 255, 0.6); /* leggero sfondo per leggibilità */
-            padding: 20px;
-            margin-top: 20px;
-			margin-left: 20px;
-			margin-right: 20px;
-            border-radius: 8px;
-			border: 2px solid #5c3a2e;
-            width: fit-content;
-        }
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
 
-        /* Titolo */
-        h1 {
-            margin: 0;
-            font-size: 1.8em;
-            color: #5c3a2e; /* marrone */
-            text-align: center;
-        }
+    /* Contenitore principale */
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 400px;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-        /* Immagine */
-        .baptism-photo {
-            display: block;
-            margin: 30px auto;
-            max-width: 80%; /* Ridotta al 80% dello schermo */
-            max-height: 70vh; /* Limita l'altezza a 70% dell'altezza viewport */
-            height: auto;
-            border: 2px solid #5c3a2e;
-            border-radius: 4px;
-            object-fit: contain; /* Mantieni proporzioni */
-        }
+    /* Titolo decorativo */
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2em;
+      color: #333;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
 
-        /* Per dispositivi mobili, assicurarsi che la foto sia proporzionata */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.4em;
-            }
-            /* Puoi anche ridurre ulteriormente la dimensione dell'immagine se necessario */
-            .baptism-photo {
-                max-width: 90%;
-                max-height: 60vh;
-            }
-        }
-    </style>
+    /* Sezione input */
+    .form-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    /* Campo input e textarea */
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 15px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      font-size: 1em;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    input[type="text"]:focus, textarea:focus {
+      border-color: #ff7e5f;
+      box-shadow: 0 0 8px rgba(255, 126, 95, 0.4);
+      outline: none;
+    }
+
+    /* Bottone invia */
+    button {
+      background-color: #ff7e5f;
+      color: #fff;
+      border: none;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background-color: #eb6750;
+      transform: translateY(-2px);
+    }
+
+    /* Decorazioni aggiuntive */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 20%, transparent 70%);
+      z-index: -1;
+    }
+
+  </style>
 </head>
 <body>
-    <!-- Contenitore del titolo -->
-    <div class="title-container">
-        <h1 id="titolo">IL BATTESIMO DI ILENIA<br>27 Settembre 2025</h1>
-    </div>
-
-    <!-- Inserisci qui la tua foto, sostituisci src con il percorso corretto -->
-    <img src="foto_battesimo.jpg" id="immagine" alt="Foto del battesimo" class="baptism-photo" style="cursor:pointer;" onclick="cambiaImmagine()" />
+  <div class="container">
+    <h1>Scrivi il tuo messaggio</h1>
+    <form class="form-section" onsubmit="return false;">
+      <input type="text" id="nome" placeholder="Inserisci il tuo nome" required />
+      <textarea id="messaggio" rows="5" placeholder="Scrivi il tuo messaggio" required></textarea>
+      <button type="submit" onclick="alert('Messaggio inviato!')">Invia</button>
+    </form>
+  </div>
 </body>
 </html>
