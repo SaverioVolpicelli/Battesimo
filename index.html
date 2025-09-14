@@ -1,111 +1,129 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Messaggio Utente</title>
-  <style>
-    /* Reset di base */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pagina di Messaggi</title>
+<style>
+  /* Reset base */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
+  /* Stile corpo */
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f9d423, #ff4e50);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Niente scroll */
+  }
+
+  /* Sezione principale */
+  .container {
+    width: 95%;
+    max-width: 600px;
+    height: 90vh;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Spazio tra le sezioni */
+  }
+
+  /* Titolo decorativo */
+  .title {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  }
+
+  /* Sezione input */
+  .inputs {
+    flex: 1; /* Prende tutto lo spazio disponibile */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  input[type="text"], textarea {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+  }
+
+  input[type="text"]:focus, textarea:focus {
+    outline: none;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  /* Bottone invia */
+  button {
+    padding: 15px;
+    background-color: #ff4e50;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+  }
+
+  button:hover {
+    background-color: #e04445;
+    transform: scale(1.02);
+  }
+
+  /* Completamento */
+  @media(max-width: 600px){
     body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
+      padding: 10px;
     }
-
-    /* Contenitore principale */
-    .container {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      width: 100%;
-      max-width: 400px;
-      height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    /* Titolo decorativo */
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 2em;
-      color: #333;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-    }
-
-    /* Sezione input */
-    .form-section {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-    }
-
-    /* Campo input e textarea */
-    input[type="text"], textarea {
-      width: 100%;
-      padding: 15px;
-      margin-bottom: 15px;
-      border: 2px solid #ccc;
-      border-radius: 10px;
-      font-size: 1em;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    input[type="text"]:focus, textarea:focus {
-      border-color: #ff7e5f;
-      box-shadow: 0 0 8px rgba(255, 126, 95, 0.4);
-      outline: none;
-    }
-
-    /* Bottone invia */
-    button {
-      background-color: #ff7e5f;
-      color: #fff;
-      border: none;
-      padding: 15px;
-      border-radius: 10px;
-      font-size: 1.2em;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: background-color 0.3s, transform 0.2s;
-    }
-    button:hover {
-      background-color: #eb6750;
-      transform: translateY(-2px);
-    }
-
-    /* Decorazioni aggiuntive */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: radial-gradient(circle, rgba(255,255,255,0.05) 20%, transparent 70%);
-      z-index: -1;
-    }
-
-  </style>
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>Scrivi il tuo messaggio</h1>
-    <form class="form-section" onsubmit="return false;">
+
+<div class="container">
+  <div class="title">Scrivi il tuo messaggio</div>
+  <form id="messaggioForm" onsubmit="return false;">
+    <div class="inputs">
       <input type="text" id="nome" placeholder="Inserisci il tuo nome" required />
-      <textarea id="messaggio" rows="5" placeholder="Scrivi il tuo messaggio" required></textarea>
-      <button type="submit" onclick="alert('Messaggio inviato!')">Invia</button>
-    </form>
-  </div>
+      <textarea id="messaggio" rows="4" placeholder="Scrivi il tuo messaggio" required></textarea>
+    </div>
+    <button type="submit" onclick="inviaMessaggio()">Invia</button>
+  </form>
+</div>
+
+<script>
+  function inviaMessaggio() {
+    const nome = document.getElementById('nome').value.trim();
+    const messaggio = document.getElementById('messaggio').value.trim();
+
+    if(nome && messaggio){
+      alert(`Messaggio inviato da ${nome}:\n
+${messaggio}`);
+      // Puoi aggiungere logica di invio o reset del form qui
+      document.getElementById('messaggioForm').reset();
+    } else {
+      alert("Per favore, compila tutti i campi.");
+    }
+  }
+</script>
+
 </body>
 </html>
