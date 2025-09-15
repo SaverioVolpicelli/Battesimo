@@ -68,6 +68,16 @@
       margin-bottom: 30px;
     }
 
+	/* messaggio di successo */
+	#successMessage {
+		display: none;
+		margin-top: 20px;
+		color: green;
+		font-size: 18px;
+		font-weight: bold;
+		text-align: center;
+	}
+
     /* Etichette e input */
     label {
       display: block;
@@ -141,7 +151,7 @@
   <!-- Sezione di inserimento -->
   <div class="contact-section">
 	<div class="title" align="center">Inserisci una dedica</div>
-    <form id="messageForm">
+    <form id="messageForm" onsubmit="return submitForm();">
       <label for="nome">Nome:</label>
       <input type="text" id="nome" name="nome" placeholder="Inserisci il tuo nome" required />
 
@@ -150,25 +160,32 @@
 
       <button type="submit">Invia</button>
     </form>
+	<div id="successMessage">Messaggio inviato con successo! 🎉</div>
   </div>
+	<script>
+		function submitForm() {
+		  const nome = document.getElementById('nome').value;
+		  const messaggio = document.getElementById('messaggio').value;
 
-  <script>
-    // Gestione semplice dell'invio
-    document.getElementById('messageForm').addEventListener('submit', function(e) {
-      e.preventDefault(); // evita il comportamento di default
-      const nome = document.getElementById('nome').value.trim();
-      const messaggio = document.getElementById('messaggio').value.trim();
-      
-      if(nome && messaggio) {
-        alert(`Messaggio inviato da ${nome}!\n
-Messaggio: ${messaggio}`);
-        // Puoi aggiungere qui altre azioni, come inviare i dati a un server
-        // Per ora, resettiamo il form
-        this.reset();
-      } else {
-        alert('Per favore, compila tutti i campi.');
-      }
-    });
-  </script>
+		  google.script.run.withSuccessHandler(function(response) {
+			document.getElementById('messageForm').reset();
+		  }).saveMessage(nome, messaggio);
+		  
+		  return false; // evita ricarica pagina
+		}
+
+		const form = document.getElementById('messageForm');
+		const successMsg = document.getElementById('successMessage');
+
+		form.addEventListener('submit', function(e) {
+			e.preventDefault();
+
+			// Mostrare il messaggio di successo
+			successMsg.style.display = 'block';
+
+			// Opzionale: resettare il form
+			form.reset();
+		});
+	</script>
 </body>
 </html>
